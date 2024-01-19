@@ -33,6 +33,7 @@ RADIUS = 3.5
 
 ###############################################################################
 # Utility mesh loader
+# 工具函数：网格加载
 ###############################################################################
 
 def load_mesh(filename, mtl_override=None):
@@ -43,6 +44,7 @@ def load_mesh(filename, mtl_override=None):
 
 ###############################################################################
 # Loss setup
+# 损失配置
 ###############################################################################
 
 def createLoss(FLAGS):
@@ -61,6 +63,7 @@ def createLoss(FLAGS):
 
 ###############################################################################
 # Main shape fitter function / optimization loop
+# 形状过滤主方程/优化循环
 ###############################################################################
 
 def optimize_mesh(
@@ -70,17 +73,18 @@ def optimize_mesh(
     mesh_scale=2.0
     ):
 
+    # 创建输出文件目录
     os.makedirs(out_dir, exist_ok=True)
     os.makedirs(os.path.join(out_dir, "mesh"), exist_ok=True)
 
-    # Projection matrix
+    # 创建投影矩阵（Projection matrix）
     proj_mtx = util.projection(x=0.4, f=1000.0)
 
-    # Guess learning rate if not specified
+    # 设置默认学习率（Guess learning rate if not specified）
     if FLAGS.learning_rate is None:
         FLAGS.learning_rate = 0.01
 
-    # Reference mesh
+    # 加载参照网格（Reference mesh）
     ref_mesh = load_mesh(FLAGS.ref_mesh, FLAGS.mtl_override)
     print("Ref mesh has %d triangles and %d vertices." % (ref_mesh.t_pos_idx.shape[0], ref_mesh.v_pos.shape[0]))
 

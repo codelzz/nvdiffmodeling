@@ -16,7 +16,7 @@ from . import mesh
 from . import material
 
 ######################################################################################
-# Utility functions
+# 工具函数（Utility functions）
 ######################################################################################
 
 def _write_weights(folder, mesh):
@@ -36,17 +36,35 @@ def _find_mat(materials, name):
     return materials[0] # Materials 0 is the default
 
 ######################################################################################
-# Create mesh object from objfile
+# 从obj文件创建网格对象（Create mesh object from objfile）
+# obj数据前缀：
+#   - v:  几何顶点（geometric vertices） (x, y, z, [w]), w 可选，默认为 1.0.；
+#        e.g.: v 0.123 0.234 0.345 1.0
+#
+#   - vt: 纹理坐标（texture coordinates) (u, [v, w]), 范围（0，1），w 可选，默认为 0.0；
+#        e.g.: vt 0.500 1 [0]
+#
+#   - vn: 顶点法向量（vertex normal）(x,y,z) 法向量可能不为单位向量；
+#        e.g.: vn 0.707 0.000 0.707
+#
+#   - vp: 参数空间顶点（parameter space vertices） (u, [v, w]) ，Freeform几何表述（参数化表面）;
+#        e.g.: vp 0.310000 3.210000 2.100000
+#
+#   - f:  多边形面元素（Polygonal face element）
+#        e.g.: f 6/4/1 3/5/3 7/6/5
+#
+#   - l:  线元素（Line element）
+#        e.g.: l 5 8 1 2 4 9
 ######################################################################################
 
 def load_obj(filename, clear_ks=True, mtl_override=None):
     obj_path = os.path.dirname(filename)
 
-    # Read entire file
+    # 读取文件（Read entire file）
     with open(filename) as f:
         lines = f.readlines()
 
-    # Load materials
+    # 加载材质（Load materials）
     all_materials = [
         {
             'name' : '_default_mat',
@@ -55,6 +73,8 @@ def load_obj(filename, clear_ks=True, mtl_override=None):
             'ks'   : texture.Texture2D(torch.tensor([0.0, 0.0, 0.0], dtype=torch.float32, device='cuda'))
         }
     ]
+    
+    
     if mtl_override is None: 
         for line in lines:
             if len(line.split()) == 0:
@@ -64,7 +84,7 @@ def load_obj(filename, clear_ks=True, mtl_override=None):
     else:
         all_materials += material.load_mtl(mtl_override)
 
-    # load vertices
+    # 加载顶点（load vertices），分离顶点，材质，法向量数据。
     vertices, texcoords, normals  = [], [], []
     for line in lines:
         if len(line.split()) == 0:
@@ -139,7 +159,7 @@ def load_obj(filename, clear_ks=True, mtl_override=None):
     return mesh.Mesh(vertices, faces, normals, nfaces, texcoords, tfaces, v_weights=v_weights, bone_mtx=bone_mtx, material=uber_material)
 
 ######################################################################################
-# Save mesh object to objfile
+# 将网格保存为obj文件（Save mesh object to objfile）
 ######################################################################################
 
 def write_obj(folder, mesh):
