@@ -38,6 +38,9 @@ def _find_mat(materials, name):
 ######################################################################################
 # 从obj文件创建网格对象（Create mesh object from objfile）
 # obj数据前缀：
+#   - mtllib: 关联材质文件
+#        e.g: mtllib mesh.mtl
+#
 #   - v:  几何顶点（geometric vertices） (x, y, z, [w]), w 可选，默认为 1.0.；
 #        e.g.: v 0.123 0.234 0.345 1.0
 #
@@ -74,7 +77,7 @@ def load_obj(filename, clear_ks=True, mtl_override=None):
         }
     ]
     
-    
+    # 材质重写（Material Override）
     if mtl_override is None: 
         for line in lines:
             if len(line.split()) == 0:
@@ -84,7 +87,7 @@ def load_obj(filename, clear_ks=True, mtl_override=None):
     else:
         all_materials += material.load_mtl(mtl_override)
 
-    # 加载顶点（load vertices），分离顶点，材质，法向量数据。
+    # 顶点加载（load vertices），分离顶点，材质，法向量数据。
     vertices, texcoords, normals  = [], [], []
     for line in lines:
         if len(line.split()) == 0:
@@ -99,14 +102,14 @@ def load_obj(filename, clear_ks=True, mtl_override=None):
         elif prefix == 'vn':
             normals.append([float(v) for v in line.split()[1:]])
 
-    # load faces
+    # 面加载（load faces）
     activeMatIdx = None
     used_materials = []
     faces, tfaces, nfaces, mfaces = [], [], [], []
     for line in lines:
         if len(line.split()) == 0:
             continue
-
+        
         prefix = line.split()[0].lower()
         if prefix == 'usemtl': # Track used materials
             mat = _find_mat(all_materials, line.split()[1])

@@ -16,6 +16,9 @@ from . import mesh
 
 ######################################################################################
 # .mtl material format loading / storing
+# .mtl 材质格式加载
+#
+# ref: https://doc.sitecore.com/ch/en/users/33/content-hub/content-user-manual--3d-file.html
 ######################################################################################
 
 def load_mtl(fn, clear_ks=True):
