@@ -18,6 +18,32 @@ from . import mesh
 # .mtl material format loading / storing
 # .mtl 材质格式加载
 #
+# .mtl 数据前缀：
+#   - Ka: 环境颜色（ambient color）
+#       e.g.: Ka 1.000 1.000 1.000
+#
+#   - Kd: 漫反射颜色（diffuse color）
+#       e.g.: Kd 1.000 1.000 1.000
+#
+#   - Ks: 高光颜色（specular color）
+#       e.g.: Ks 0.000 0.000 0.000
+#   
+#   - Ns: 高光指数（specular exponent）, 0~1000
+#       e.g.: Ns 10.000
+#
+#   - Tr: 透明（transparent）,已用d作为前缀
+#       e.g.: Tr 0.1
+#
+#   - Tf: 传输过滤色（transmission filter color）
+#       e.g.: 1.0 0.5 0.5
+#
+#   - Ni：折射率（index of refraction)
+#       e.g.: Ni 1.45000
+#
+#   - map_xx: 纹理贴图
+#       e.g.: map_Kd texture_kd.png （漫反射贴图）
+#             map_Ks texture_ks.png （高光贴图）
+#             bump   texture_n.png   (法线贴图)
 # ref: https://doc.sitecore.com/ch/en/users/33/content-hub/content-user-manual--3d-file.html
 ######################################################################################
 
@@ -25,11 +51,11 @@ def load_mtl(fn, clear_ks=True):
     import re
     mtl_path = os.path.dirname(fn)
 
-    # Read file
+    # 读取文件（Read file）
     with open(fn) as f:
         lines = f.readlines()
 
-    # Parse materials
+    # 解析材质（Parse materials）
     materials = []
     for line in lines:
         split_line = re.split(' +|\t+|\n+', line.strip())
@@ -44,6 +70,7 @@ def load_mtl(fn, clear_ks=True):
             else:
                 material[prefix] = torch.tensor(tuple(float(d) for d in data), dtype=torch.float32, device='cuda')
 
+    # 将所有内容转为纹理，代码以 ‘kd’，‘ks’ 作为纹理贴图。因此需要将常数替换为1x1贴图。
     # Convert everything to textures. Our code expects 'kd' and 'ks' to be texture maps. So replace constants with 1x1 maps
     for mat in materials:
         if not 'bsdf' in mat:
