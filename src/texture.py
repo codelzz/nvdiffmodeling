@@ -46,6 +46,7 @@ class Texture2D:
     def getRes(self):
         return self.getMips()[0].shape[1:3]
 
+    # 获取 Tensor 类型数据
     def getMips(self):
         if isinstance(self.data, list):
             return self.data
@@ -72,7 +73,7 @@ class Texture2D:
 ########################################################################################################
 
 def create_trainable(init, res, auto_mipmaps):
-    with torch.no_grad():
+    with torch.no_grad():   # 标志代码块内部不跟踪梯度信息
         if isinstance(init, Texture2D):
             assert isinstance(init.data, torch.Tensor)
             init = init.data

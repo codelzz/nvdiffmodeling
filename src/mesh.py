@@ -107,6 +107,7 @@ def unit_size(mesh):
         return Mesh(v_pos, base=mesh)
 
 ######################################################################################
+# 居中 & 缩放网格用于渲染
 # Center & scale mesh for rendering
 #
 # TODO: It should be better to compute camera position from animated reference mesh 

@@ -86,33 +86,46 @@ def optimize_mesh(
 
     # 加载参照网格（Reference mesh）
     ref_mesh = load_mesh(FLAGS.ref_mesh, FLAGS.mtl_override)
-    print("Ref mesh has %d triangles and %d vertices." % (ref_mesh.t_pos_idx.shape[0], ref_mesh.v_pos.shape[0]))
+    # print("Ref mesh has %d triangles and %d vertices." % (ref_mesh.t_pos_idx.shape[0], ref_mesh.v_pos.shape[0]))
+    print("参考网格包含 %d 三角面和 %d 顶点." % (ref_mesh.t_pos_idx.shape[0], ref_mesh.v_pos.shape[0]))
 
-    # Check if the training texture resolution is acceptable
+
+    # 检测训练纹理的分辨率是否合规（Check if the training texture resolution is acceptable）
     ref_texture_res = np.maximum(ref_mesh.material['kd'].getRes(), ref_mesh.material['ks'].getRes())
     if 'normal' in ref_mesh.material:
         ref_texture_res = np.maximum(ref_texture_res, ref_mesh.material['normal'].getRes())
     if FLAGS.texture_res[0] < ref_texture_res[0] or FLAGS.texture_res[1] < ref_texture_res[1]:
         print("---> WARNING: Picked a texture resolution lower than the reference mesh [%d, %d] < [%d, %d]" % (FLAGS.texture_res[0], FLAGS.texture_res[1], ref_texture_res[0], ref_texture_res[1]))
 
-    # Base mesh
+    # 基础网格（Base mesh）
     base_mesh = load_mesh(FLAGS.base_mesh)
-    print("Base mesh has %d triangles and %d vertices." % (base_mesh.t_pos_idx.shape[0], base_mesh.v_pos.shape[0]))
-    print("Avg edge length: %f" % regularizer.avg_edge_length(base_mesh))
+    # print("Base mesh has %d triangles and %d vertices." % (base_mesh.t_pos_idx.shape[0], base_mesh.v_pos.shape[0]))
+    # print("Avg edge length: %f" % regularizer.avg_edge_length(base_mesh))
+    print("基础网格具有 %d 三角面和 %d 顶点." % (base_mesh.t_pos_idx.shape[0], base_mesh.v_pos.shape[0]))
+    print("平均边长: %f" % regularizer.avg_edge_length(base_mesh))
 
-    # Create normalized size versions of the base and reference meshes. Normalized base_mesh is important as it makes it easier to configure learning rate.
+    t_reduction_rate = (1 - base_mesh.t_pos_idx.shape[0] / ref_mesh.t_pos_idx.shape[0]) * 100
+    v_reduction_rate = (1 - base_mesh.v_pos.shape[0] / ref_mesh.v_pos.shape[0]) * 100
+    print("预期减面率为: %.2f%%" % t_reduction_rate)
+    print("预期减点率为: %.2f%%" % v_reduction_rate)
+
+    # 构建归一化基础网格和参考网格版本。对基础网格进行归一化有助于设置学习率
+    # Create normalized size versions of the base and reference meshes. 
+    # Normalized base_mesh is important as it makes it easier to configure learning rate.
     normalized_base_mesh = mesh.unit_size(base_mesh)
     normalized_ref_mesh = mesh.unit_size(ref_mesh)
 
     assert not FLAGS.random_train_res or FLAGS.custom_mip, "Random training resolution requires custom mip."
 
     # ==============================================================================================
-    #  Initialize weights / variables for trainable mesh
+    # 初始化训练网格的权重和变量 
+    # Initialize weights / variables for trainable mesh
     # ==============================================================================================
     trainable_list = [] 
 
     v_pos_opt = normalized_base_mesh.v_pos.clone().detach().requires_grad_(True)
 
+    # 可训练的法线贴图，初始化为(0,0,1)，并确保法向量总处于正半球。
     # Trainable normal map, initialize to (0,0,1) & make sure normals are always in positive hemisphere
     if FLAGS.random_textures:
         normal_map_opt = texture.create_trainable(np.array([0, 0, 1]), FLAGS.texture_res, not FLAGS.custom_mip)
