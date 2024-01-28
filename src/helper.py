@@ -5,7 +5,60 @@ import argparse
 import json
 
 from . import util
+from . import obj
+import src.renderutils as ru
 
+import torch
+import matplotlib.pyplot as plt
+
+def load_mesh(filename, mtl_override=None):
+    name, ext = os.path.splitext(filename)
+    if ext == ".obj":
+        return obj.load_obj(filename, clear_ks=True, mtl_override=mtl_override)
+    assert False, "Invalid mesh file extension"
+
+def createLoss(FLAGS):
+    if FLAGS.loss == "smape":
+        return lambda img, ref: ru.image_loss(img, ref, loss='smape', tonemapper='none')
+    elif FLAGS.loss == "mse":
+        return lambda img, ref: ru.image_loss(img, ref, loss='mse', tonemapper='none')
+    elif FLAGS.loss == "logl1":
+        return lambda img, ref: ru.image_loss(img, ref, loss='l1', tonemapper='log_srgb')
+    elif FLAGS.loss == "logl2":
+        return lambda img, ref: ru.image_loss(img, ref, loss='mse', tonemapper='log_srgb')
+    elif FLAGS.loss == "relativel2":
+        return lambda img, ref: ru.image_loss(img, ref, loss='relmse', tonemapper='none')
+    else:
+        assert False
+        
+def showImageTensor(tensor):
+    if tensor is None:
+        return
+    tensor = tensor.cpu()
+    if len(tensor.shape) == 4:
+        tensor = tensor.squeeze(0)
+
+    image = tensor.detach().numpy()
+    plt.imshow(image)
+    plt.axis('off')  # 不显示坐标轴
+    plt.show()
+
+def showBatchImageTensor(tensor, batch_size=1):
+    if tensor is None:
+        return
+    tensor = tensor.cpu()
+    tensor = torch.clamp(tensor, min=0, max=1)
+    width = 20
+    height = width / batch_size
+    fig, axes = plt.subplots(1, batch_size, figsize=(width, height))  # Adjust figsize to your needs
+    # Iterate over the batch dimension
+    for i in range(batch_size):
+        img = tensor[i]
+        axes[i].imshow(img)
+        axes[i].axis('off')  # Turn off axis
+    
+    plt.tight_layout()  # Adjust subplots to fit into the figure area.
+    plt.show()
 
 def load_args(args):
     parser = argparse.ArgumentParser(description='diffmodeling')

@@ -149,12 +149,12 @@ def merge_materials(materials, texcoords, tfaces, mfaces):
             max_res = np.maximum(max_res, tex_res) if max_res is not None else tex_res
     
     # Compute size of compund texture and round up to nearest PoT
-    full_res = 2**np.ceil(np.log2(max_res * np.array([1, len(materials)]))).astype(np.int)
+    full_res = 2**np.ceil(np.log2(max_res * np.array([1, len(materials)]))).astype(int)
 
     # Normalize texture resolution across all materials & combine into a single large texture
     for tex in textures:
         if tex in materials[0]:
-            tex_data = torch.cat(tuple(util.scale_img_nhwc(mat[tex].data, tuple(max_res)) for mat in materials), dim=2) # Lay out all textures horizontally, NHWC so dim2 is x
+            tex_data = torch.cat(tuple(util.scale_img_nhwc(mat[tex].data, tuple(max_res.tolist())) for mat in materials), dim=2) # Lay out all textures horizontally, NHWC so dim2 is x
             tex_data = _upscale_replicate(tex_data, full_res)
             uber_material[tex] = texture.Texture2D(tex_data)
 

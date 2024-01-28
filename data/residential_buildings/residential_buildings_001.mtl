@@ -1,0 +1,18 @@
+# Blender MTL File: '01 Residential Buildings Set Array.blend'
+# Material Count: 2
+
+newmtl ground
+illum 4
+Kd 0.90 0.90 0.90
+Ks 0.90 0.90 0.90
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+
+newmtl hotel_glas
+illum 4
+Kd 0.90 0.90 0.90
+Ks 0.90 0.90 0.90
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00

@@ -3,13 +3,13 @@
     "ref_mesh": "data/satellite_dish/satellite_dish.obj",
     "camera_eye": [ 2.5, 0.0, -2.5 ],
     "camera_up": [ 0.0, 1.0, 0.0 ],
-    "random_textures": true,
-    "iter": 1000,
-    "save_interval": 1000,
+    "random_textures": false,
+    "iter": 100,
+    "save_interval": 100,
     "texture_res": [ 1024, 1024 ],
     "train_res": 512,
     "batch": 8,
-    "learning_rate": 0.03,
-    "min_roughness" : 0.25,
+    "learning_rate": 0.01,
+    "skip_train": ["kd", "ks"],
     "out_dir" : "satellite_dish" 
 }

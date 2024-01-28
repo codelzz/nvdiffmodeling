@@ -1,0 +1,108 @@
+Smithsonian Institution
+______________________
+3D scene content information:
+
+	Title: Lidded ritual ewer (<em>guang</em>) with taotie, dragons, birds, tigers, elephants, fish, snakes, and humans
+	Record maintained by: Freer Gallery of Art and Arthur M. Sackler Gallery
+	Record ID: fsg_F1961.33a-b
+
+3D Scene ID:3d_package:d8c646aa-4ebc-11ea-b77f-2e728ce88125
+______________________
+File Usage:
+
+CC0
+This media file is in the public domain (free of copyright restrictions). You can copy, modify, and distribute this work without contacting the Smithsonian. For more information and to review the 3D disclaimer, visit the Smithsonian’s Terms of Use page. (https://www.si.edu/Termsofuse)
+
+
+______________________
+3D scene content details:
+
+Title: Lidded ritual ewer (<em>guang</em>) with taotie, dragons, birds, tigers, elephants, fish, snakes, and humans
+Smithsonian Record ID: edanmdm:fsg_F1961.33a-b
+
+	TITLE
+	Lidded ritual ewer (<em>guang</em>) with taotie, dragons, birds, tigers, elephants, fish, snakes, and humans
+
+	METADATA USAGE
+	CC0
+
+	GUID
+	http://n2t.net/ark:/65665/ye3810cf905-f85e-4adb-b160-1e5b94cbffe9
+
+	DATA SOURCE
+	Freer Gallery of Art and Arthur M. Sackler Gallery
+
+	MEDIUM
+	Bronze
+
+	DIMENSIONS
+	H x W x D: 31.4 x 31.5 x 14.4 cm (12 3/8 x 12 3/8 x 5 11/16 in)
+
+	PREVIOUS CUSTODIAN OR OWNER
+	Eugene and Agnes E. Meyer ((1875-1959) and (1887-1970))
+
+	PROVENANCE
+	From at least 1926 to 1961
+
+	PROVENANCE
+	Eugene Meyer (1875-1959) and Agnes E. Meyer (1887-1970), Washington, DC, and Mt. Kisco, NY, from at least 1926 [1]
+
+	PROVENANCE
+	From 1961
+
+	PROVENANCE
+	Freer Gallery of Art, gift of Eugene and Agnes E. Meyer in 1961 [2]
+
+	PROVENANCE
+	Notes:
+
+	PROVENANCE
+	[1] See H. d'Ardenne de Tizac, L'Art Chinois Classique (Paris: Henri Laurens, 1926), p. 25, pls. 6-7.
+
+	PROVENANCE
+	[2] See Agnes Meyer's Deed of Gift, dated December 21, 1961, copy in object file.
+
+	ORIGIN
+	Middle Yangzi Valley, China
+
+	CREDIT LINE
+	Gift of Eugene and Agnes E. Meyer
+
+	ACCESSION NUMBER
+	F1961.33a-b
+
+	DATE
+	ca. 1100-1050 BCE
+
+	TYPE
+	Metalwork
+
+	TYPE
+	Vessel
+
+	TOPIC
+	animal
+
+	TOPIC
+	Shang dynasty (ca. 1600 - ca. 1050 BCE)
+
+	TOPIC
+	casting
+
+	TOPIC
+	wine
+
+	TOPIC
+	China
+
+	TOPIC
+	Chinese Art
+
+	TOPIC
+	taotie
+
+	TOPIC
+	WWII-era provenance
+
+______________________
+

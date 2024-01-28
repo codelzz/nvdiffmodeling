@@ -1,0 +1,5 @@
+newmtl SimplygonBakedMaterial
+bsdf falcor
+Kd 0.00 0.00 0.00
+Ks 0.0 0.263 0.9
+

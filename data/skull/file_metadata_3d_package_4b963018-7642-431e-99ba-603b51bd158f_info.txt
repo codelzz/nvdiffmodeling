@@ -1,0 +1,72 @@
+Smithsonian Institution
+______________________
+3D scene content information:
+
+	title: Hylobates klossii
+	Record maintained by: NMNH - Vertebrate Zoology - Mammals Division
+	Record ID: nmnhvz_7245734
+
+3D Scene ID:3d_package:4b963018-7642-431e-99ba-603b51bd158f
+______________________
+File Usage:
+
+CC0
+This media file is in the public domain (free of copyright restrictions). You can copy, modify, and distribute this work without contacting the Smithsonian. For more information and to review the 3D disclaimer, visit the Smithsonian’s Terms of Use page. (https://www.si.edu/Termsofuse)
+
+
+______________________
+3D scene content details:
+
+Title: Hylobates klossii
+Smithsonian Record ID: edanmdm:nmnhvz_7245734
+
+	TITLE
+	Hylobates klossii
+
+	METADATA USAGE
+	CC0
+
+	GUID
+	http://n2t.net/ark:/65665/359ad83c6-6ecc-4197-a4d9-25d85f3b606e
+
+	DATA SOURCE
+	NMNH - Vertebrate Zoology - Mammals Division
+
+	COLLECTOR
+	William L. Abbott
+
+	PREPARATION
+	Skull
+
+	SEX
+	Male
+
+	STAGE
+	Adult
+
+	RECORD LAST MODIFIED
+	20 Jul 2020
+
+	SPECIMEN COUNT
+	1
+
+	PLACE
+	Mentawai Islands, S Pagi (=Pagai), Pagi Island (=Pagai Island), Sumatera Barat, Indonesia, Asia
+
+	OTHER NUMBERS
+	Mammals Field Number : 2194
+
+	USNM NUMBER
+	122176
+
+	COLLECTION DATE
+	4 Jan 1903
+
+	PUBLISHED NAME
+	Hylobates klossii
+
+	TAXONOMY
+	Animalia, Chordata, Vertebrata, Mammalia, Eutheria, Primates, Haplorrhini, Hylobatidae
+
+______________________
+

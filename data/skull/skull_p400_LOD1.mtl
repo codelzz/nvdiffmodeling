@@ -1,0 +1,4 @@
+newmtl SimplygonMaterial
+bsdf diffuse
+Kd 0.50 0.50 0.50
+Ks 0.00 0.00 0.00

@@ -76,7 +76,7 @@ def load_obj(filename, clear_ks=True, mtl_override=None):
             'ks'   : texture.Texture2D(torch.tensor([0.0, 0.0, 0.0], dtype=torch.float32, device='cuda'))
         }
     ]
-    
+        
     # 材质重写（Material Override）
     if mtl_override is None: 
         for line in lines:
@@ -86,7 +86,7 @@ def load_obj(filename, clear_ks=True, mtl_override=None):
                 all_materials += material.load_mtl(os.path.join(obj_path, line.split()[1]), clear_ks) # Read in entire material library
     else:
         all_materials += material.load_mtl(mtl_override)
-
+        
     # 顶点加载（load vertices），分离顶点，材质，法向量数据。
     vertices, texcoords, normals  = [], [], []
     for line in lines:

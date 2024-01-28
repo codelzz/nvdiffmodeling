@@ -298,6 +298,7 @@ def compute_tangents(mesh):
             vn_idx = [None] * 3
             pos = [None] * 3
             tex = [None] * 3
+
             for i in range(0,3):
                 pos[i] = imesh.v_pos[imesh.t_pos_idx[:, i]]
                 tex[i] = imesh.v_tex[imesh.t_tex_idx[:, i]]

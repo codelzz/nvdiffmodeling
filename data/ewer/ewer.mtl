@@ -1,0 +1,15 @@
+newmtl f1961_33_part_01_laser_ortery_texture_150k_unwrapped:ml
+bsdf pbr
+Kd 0.7 0.7 0.7
+Ks 0.0 0.263 0.9
+map_Ks Bronze_ORM.png
+map_Kd f1961_33-part_01-laser-ortery_texture-150k-4096-diffuse.png
+bump f1961_33-part_01-laser-ortery_texture-150k-4096-normals.png
+
+newmtl f1961_33_part_02_x_pol_ort_texture_150k_unwrapped:ml
+bsdf pbr
+Kd 0.7 0.7 0.7
+Ks 0.0 0.263 0.9
+map_Ks Bronze_ORM.png
+map_Kd f1961_33-part_02-x_pol-ort_texture-150k-4096-diffuse.png
+bump f1961_33-part_02-x_pol-ort_texture-150k-4096-normals.png
